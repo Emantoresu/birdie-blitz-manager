@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Search, Plus, Phone, Mail, MapPin, Filter } from "lucide-react";
+import { Search, Plus, Phone, Mail, MapPin, Filter, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
