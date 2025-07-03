@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { 
@@ -10,7 +9,8 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  Activity
+  Activity,
+  Clock
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,7 @@ const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "Members", href: "/members", icon: Users },
   { name: "Court Booking", href: "/booking", icon: Calendar },
+  { name: "Club Nights", href: "/club-nights", icon: Clock },
   { name: "Events", href: "/events", icon: Trophy },
   { name: "Statistics", href: "/statistics", icon: BarChart3 },
   { name: "Settings", href: "/settings", icon: Settings },
