@@ -9,8 +9,17 @@ vi.mock('@/hooks/use-mobile', () => ({
 
 describe('ClubNightsFilters', () => {
   it('renders correctly on desktop', () => {
-    render(<ClubNightsFilters />);
+    const mockOnSearchChange = vi.fn();
+    const mockOnFilterChange = vi.fn();
+    render(
+      <ClubNightsFilters
+        searchTerm=""
+        filterStatus="All"
+        onSearchChange={mockOnSearchChange}
+        onFilterChange={mockOnFilterChange}
+      />
+    );
     expect(screen.getByPlaceholderText('Search club nights by title or organizer...')).toBeInTheDocument();
-    // Removed other assertions for now
+    expect(screen.getByText('All Status')).toBeInTheDocument(); // Check if the default filter is visible
   });
 });

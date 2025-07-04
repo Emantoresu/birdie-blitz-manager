@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest'; // Added vi import
 import IndexPage from './Index'; // Assuming Index.tsx exports default
-import { BrowserRouter, MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 
 import { Dashboard } from './Dashboard'; // Import the actual Dashboard component
 

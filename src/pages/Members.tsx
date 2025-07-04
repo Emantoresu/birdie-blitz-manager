@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import DOMPurify from 'dompurify';
 import { Search, Plus, Phone, Mail, MapPin, Filter, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,9 @@ interface Member {
 export function Members() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("All");
+
+  // Sanitize search term before using it
+  const sanitizedSearchTerm = DOMPurify.sanitize(searchTerm);
 
   const members: Member[] = [
     {
@@ -73,8 +77,8 @@ export function Members() {
   ];
 
   const filteredMembers = members.filter(member => {
-    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         member.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = member.name.toLowerCase().includes(sanitizedSearchTerm.toLowerCase()) ||
+                         member.email.toLowerCase().includes(sanitizedSearchTerm.toLowerCase());
     const matchesFilter = filterType === "All" || member.membershipType === filterType;
     return matchesSearch && matchesFilter;
   });

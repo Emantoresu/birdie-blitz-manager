@@ -14,7 +14,9 @@ interface Booking {
 }
 
 export function CourtBooking() {
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
+  const today = new Date().toISOString().split('T')[0];
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [dateError, setDateError] = useState<string | null>(null);
   
   const courts = ["Court 1", "Court 2", "Court 3", "Court 4"];
   const timeSlots = [
@@ -103,11 +105,22 @@ export function CourtBooking() {
             type="date"
             id="date"
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            min={today} // Prevent selecting past dates
+            onChange={(e) => {
+              const newDate = e.target.value;
+              if (newDate < today) {
+                setDateError("Cannot select a past date.");
+                setSelectedDate(today); // Optionally reset to today or keep invalid date and show error
+              } else {
+                setDateError(null);
+                setSelectedDate(newDate);
+              }
+            }}
+            className={`px-3 py-2 border rounded-lg focus:ring-2 focus:border-emerald-500 ${dateError ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-emerald-500'}`}
           />
+          {dateError && <p className="text-red-500 text-xs ml-2">{dateError}</p>}
           <span className="text-gray-600 ml-4">
-            {new Date(selectedDate).toLocaleDateString('en-US', { 
+            {new Date(selectedDate).toLocaleDateString('en-US', { // Ensure selectedDate is valid for this formatting
               weekday: 'long', 
               year: 'numeric', 
               month: 'long', 

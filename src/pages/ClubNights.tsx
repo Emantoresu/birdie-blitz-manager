@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import DOMPurify from 'dompurify';
 import { ClubNightsHeader } from "@/components/ClubNightsHeader";
 import { ClubNightsFilters } from "@/components/ClubNightsFilters";
 import { ClubNightCard } from "@/components/ClubNightCard";
@@ -22,6 +23,9 @@ interface ClubNight {
 export function ClubNights() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
+
+  // Sanitize search term before using it
+  const sanitizedSearchTerm = DOMPurify.sanitize(searchTerm);
 
   const clubNights: ClubNight[] = [
     {
@@ -79,8 +83,8 @@ export function ClubNights() {
   ];
 
   const filteredClubNights = clubNights.filter(night => {
-    const matchesSearch = night.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         night.organizer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = night.title.toLowerCase().includes(sanitizedSearchTerm.toLowerCase()) ||
+                         night.organizer.toLowerCase().includes(sanitizedSearchTerm.toLowerCase());
     const matchesFilter = filterStatus === "All" || night.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
