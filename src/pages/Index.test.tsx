@@ -1,5 +1,6 @@
+
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import IndexPage from './Index'; // Assuming Index.tsx exports default
 import { BrowserRouter, MemoryRouter, Routes, Route } from 'react-router-dom';
 
