@@ -1,5 +1,6 @@
 
 import { Users, Calendar, Trophy, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import { StatsCard } from "@/components/StatsCard";
 
 export function Dashboard() {
@@ -152,11 +153,11 @@ export function Dashboard() {
       <div className="mt-8">
         <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl">
+          <Link to="/booking" className="bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl block">
             <Calendar className="h-6 w-6 mb-2" />
             <h3 className="font-semibold">Book a Court</h3>
             <p className="text-sm opacity-90">Reserve court time</p>
-          </button>
+          </Link>
           <button className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl">
             <Users className="h-6 w-6 mb-2" />
             <h3 className="font-semibold">Add Member</h3>

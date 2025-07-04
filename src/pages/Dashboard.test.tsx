@@ -33,4 +33,16 @@ describe('Dashboard Page', () => {
 
     // Removed checks for mocked chart components as they are not used directly by Dashboard.tsx
   });
+
+  it('renders the "Book a Court" quick action as a link to /booking', () => {
+    render(
+      <BrowserRouter>
+        <Dashboard />
+      </BrowserRouter>
+    );
+
+    const bookCourtLink = screen.getByRole('link', { name: /Book a Court/i });
+    expect(bookCourtLink).toBeInTheDocument();
+    expect(bookCourtLink).toHaveAttribute('href', '/booking');
+  });
 });
