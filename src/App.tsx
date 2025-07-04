@@ -9,6 +9,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { Members } from "./pages/Members";
 import { CourtBooking } from "./pages/CourtBooking";
 import { ClubNights } from "./pages/ClubNights";
+import { ScheduleClubNight } from "./pages/ScheduleClubNight"; // Import the new page
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/members" element={<Members />} />
             <Route path="/booking" element={<CourtBooking />} />
             <Route path="/club-nights" element={<ClubNights />} />
+            <Route path="/club-nights/new" element={<ScheduleClubNight />} /> {/* Add new route */}
             <Route path="/events" element={<div className="p-8"><h1 className="text-3xl font-bold">Events - Coming Soon</h1></div>} />
             <Route path="/statistics" element={<div className="p-8"><h1 className="text-3xl font-bold">Statistics - Coming Soon</h1></div>} />
             <Route path="/settings" element={<div className="p-8"><h1 className="text-3xl font-bold">Settings - Coming Soon</h1></div>} />
